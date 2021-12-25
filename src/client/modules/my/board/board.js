@@ -4,7 +4,7 @@ const MAX_TIMER = 100;
 const TIMER_INTERVAL = 10;
 const INTERVAL = 1000;
 export default class Board extends LightningElement {
-    @track boxes;
+    @track boxes = [];
     size = DEFAULT_SIZE;
     turn = 'X';
     board;
@@ -18,6 +18,9 @@ export default class Board extends LightningElement {
     timeInterval = INTERVAL;
     timeRemaining = MAX_TIMER;
     timer;
+
+    message;
+    showPopup;
 
     constructor() {
         super();
@@ -45,12 +48,17 @@ export default class Board extends LightningElement {
         this.startTimer();
     }
 
+    get noBoxes() {
+        return !this.boxes.length;
+    }
+
     startTimer() {
         this.timer = setInterval(() => {
             this.timeRemaining -= TIMER_INTERVAL;
             if (this.timeRemaining === 0) {
                 console.log('times up');
                 this.stopTimer();
+                this.showPopup = true;
             }
         }, this.timeInterval);
     }
@@ -123,4 +131,6 @@ export default class Board extends LightningElement {
     get buttonLabel() {
         return this.started ? 'Restart' : 'Start';
     }
+
+    handleClose(event) {}
 }

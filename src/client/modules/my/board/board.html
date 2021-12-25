@@ -1,13 +1,15 @@
 <template>
-    <div class="app slds-p-around_x-large">
+    <div class="app padding-around_medium">
         <div class="heading">Tic Tac Toe</div>
-        <div class="timer">
+        <my-player-form></my-player-form>
+        <div class="timer padding-around_small">
             <my-progress-bar value={timeRemaining}>
             </my-progress-bar>
         </div>
         <div class="game">
             <div
                 class="box"
+                if:true={boxes}
                 for:each={boxes}
                 for:item="tile"
                 key={tile.key}
@@ -22,7 +24,7 @@
                 </my-box>
             </div>
 
-            <div class="controls">
+            <div class="controls padding-around_x-small">
                 <button
                     class="button"
                     onclick={handleStart}
@@ -31,5 +33,11 @@
                 </button>
             </div>
         </div>
+        <my-popup
+            style="position:relative;"
+            message={message}
+            onclose={handleClose}
+            if:true={showPopup}
+        ></my-popup>
     </div>
 </template>

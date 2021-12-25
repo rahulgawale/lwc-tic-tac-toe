@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:host {
+    --space-xxs: 0.25rem;
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space-lg: 1.25rem;
+    --space-xl: 1.5rem;
+    --space-xxl: 2rem;
+}
+
+.margin-around_small {
+    margin: var(--space-sm) var(--space-sm) var(--space-sm) var(--space-sm);
+}
+
+.margin-around_medium {
+    margin: var(--space-md) var(--space-md) var(--space-md) var(--space-md);
+}
+
+.margin-around_large {
+    margin: var(--space-lg) var(--space-lg) var(--space-lg) var(--space-lg);
+}
+
+.padding-around_x-small {
+    padding: var(--space-xs) var(--space-xs) var(--space-xs) var(--space-xs);
+}
+
+.padding-around_small {
+    padding: var(--space-sm) var(--space-sm) var(--space-sm) var(--space-sm);
+}
+
+.padding-around_medium {
+    padding: var(--space-md) var(--space-md) var(--space-md) var(--space-md);
+}
+
+.padding-around_large {
+    padding: var(--space-lg) var(--space-lg) var(--space-lg) var(--space-lg);
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 0.25rem;
+    border: 0;
+    background-color: #4898f3;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: regular;
+    letter-spacing: 0.1rem;
+    display: ruby-text-group;
+    transition: all 0.5s;
+    text-transform: uppercase;
+}
+
+.button:hover {
+    box-shadow: 0em 0 0.8em #94b5f3;
+    background-color: #3f7cef;
+}
+
+.input {
+    padding: 0.5rem 1rem;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 0.25rem;
+    border: 0;
+    color: #4898f3;
+    font-size: 1rem;
+}
+
+.input:focus {
+    border: 0;
+    outline: 0;
+    border-left: 0.2rem solid #3f7cef;
+}
+
+.input::placeholder {
+    color: #a8c2f3;
+}
+
+.label {
+    color: #3f7cef;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+label {
+    padding-right: var(--space-xs);
+}

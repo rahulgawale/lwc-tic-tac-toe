@@ -1,8 +1,10 @@
+@import 'my/styles';
+
 h1 {
     color: rgb(0, 112, 210);
 }
 p {
-    font-family: 'Salesforce Sans', Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     color: rgb(62, 62, 60);
 }
 .app {
