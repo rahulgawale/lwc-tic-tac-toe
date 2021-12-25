@@ -1,0 +1,42 @@
+<template>
+    <div class="app slds-p-around_x-large">
+        <div class="heading slds-var-p-around_xx-small">Tic Tac Toe</div>
+        <div class="game slds-grid slds-grid_align-center slds-grid_vertical-align-center">
+
+            <div class="slds-col slds-size_12-of-12 slds-var-p-around_xx-small">
+                <!-- <lightning-progress-bar
+                    variant="circular"
+                    value={timeRemaining}
+                    size="large"
+                >
+                </lightning-progress-bar> -->
+                {timeRemaining}
+            </div>
+
+            <div
+                class="slds-col slds-size_4-of-12 slds-var-p-around_xx-small"
+                for:each={boxes}
+                for:item="tile"
+                key={tile.key}
+            >
+                <my-box
+                    turn={turn}
+                    onplay={handlePlay}
+                    onwrongmove={handleWrongMove}
+                    info={tile}
+                    type={tile.type}
+                >
+                </my-box>
+            </div>
+
+            <div class="slds-col slds-size_12-of-12 slds-var-p-around_xx-small slds-align_absolute-center">
+                <button
+                    class="slds-button"
+                    onclick={handleStart}
+                >
+                    {buttonLabel}
+                </button>
+            </div>
+        </div>
+    </div>
+</template>

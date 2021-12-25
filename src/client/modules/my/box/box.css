@@ -1,0 +1,21 @@
+.box {
+    background-color: grey;
+    width: 4rem;
+    height: 4rem;
+    font-weight: 700;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.box[data-status=''] {
+    background-color: rgb(111, 226, 111);
+    content: 'XXXXX';
+}
+
+.box[data-status='O'] {
+    background-color: rgb(22, 168, 179);
+}
+
+.box[data-status='X'] {
+    background-color: rgb(183, 39, 196);
+}
