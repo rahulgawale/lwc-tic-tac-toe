@@ -115,6 +115,7 @@ export default class Board extends LightningElement {
     }
 
     handleStart(event) {
+        this.stopTimer();
         this.started = 'Start';
         this.initGame();
     }

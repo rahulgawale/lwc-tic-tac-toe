@@ -1,9 +1,5 @@
 import { LightningElement, api } from 'lwc';
-
-/**
- * Show an item
- */
-export default class Child extends LightningElement {
+export default class Box extends LightningElement {
     @api info;
     @api turn;
 

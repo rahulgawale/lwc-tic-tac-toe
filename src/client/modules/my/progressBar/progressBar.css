@@ -1,0 +1,10 @@
+.bar {
+    border-radius: 0.5rem;
+    appearance: none;
+    display: block;
+    width: 100%;
+    border: 0;
+    position: relative;
+    height: 0.5rem;
+    background: #dddbda;
+}

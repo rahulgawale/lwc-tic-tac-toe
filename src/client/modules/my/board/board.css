@@ -7,11 +7,19 @@ p {
 }
 .app {
     background-color: #fafaf9;
-    height: 100vh;
-    overflow: scroll;
+    height: 95vh;
 }
 
 .game {
+    width: 13rem;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 4rem 4rem 4rem;
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+.timer {
     width: 13rem;
     margin: auto;
 }
@@ -19,5 +27,11 @@ p {
 .heading {
     font-weight: 700;
     font-size: 2rem;
+    text-align: center;
+}
+
+.controls {
+    width: 13rem;
+    margin: auto;
     text-align: center;
 }

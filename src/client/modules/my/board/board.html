@@ -1,20 +1,13 @@
 <template>
     <div class="app slds-p-around_x-large">
-        <div class="heading slds-var-p-around_xx-small">Tic Tac Toe</div>
-        <div class="game slds-grid slds-grid_align-center slds-grid_vertical-align-center">
-
-            <div class="slds-col slds-size_12-of-12 slds-var-p-around_xx-small">
-                <!-- <lightning-progress-bar
-                    variant="circular"
-                    value={timeRemaining}
-                    size="large"
-                >
-                </lightning-progress-bar> -->
-                {timeRemaining}
-            </div>
-
+        <div class="heading">Tic Tac Toe</div>
+        <div class="timer">
+            <my-progress-bar value={timeRemaining}>
+            </my-progress-bar>
+        </div>
+        <div class="game">
             <div
-                class="slds-col slds-size_4-of-12 slds-var-p-around_xx-small"
+                class="box"
                 for:each={boxes}
                 for:item="tile"
                 key={tile.key}
@@ -29,9 +22,9 @@
                 </my-box>
             </div>
 
-            <div class="slds-col slds-size_12-of-12 slds-var-p-around_xx-small slds-align_absolute-center">
+            <div class="controls">
                 <button
-                    class="slds-button"
+                    class="button"
                     onclick={handleStart}
                 >
                     {buttonLabel}
