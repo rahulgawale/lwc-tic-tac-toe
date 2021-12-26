@@ -9,7 +9,18 @@
                 class="close"
                 onclick={handleClose}
             >&times;</span>
-            <p>{message}</p>
+            <p class="label">{message}</p>
+
+            <div style="display: flex;
+            justify-content: center;
+            align-items: center;">
+                <button
+                    class="button"
+                    onclick={handleClose}
+                >
+                    {buttonLabel}
+                </button>
+            </div>
         </div>
     </div>
 </template>

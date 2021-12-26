@@ -6,41 +6,52 @@ const INTERVAL = 1000;
 export default class Board extends LightningElement {
     @track boxes = [];
     size = DEFAULT_SIZE;
+
     turn = 'X';
-    board;
-    started;
+
+    // stores the result to check winner
     rowSum = [];
     colSum = [];
     diagSum = 0;
     revDiagSum = 0;
     totalSum = 0;
 
+    started;
+
     timeInterval = INTERVAL;
     timeRemaining = MAX_TIMER;
     timer;
 
+    player1;
+    player2;
+
     message;
     showPopup;
+    showPlayerForm = true;
 
-    constructor() {
-        super();
-        //this.initGame();
-    }
+    buttonLabelStart = 'Start';
+    buttonLabelRestart = 'Restart';
 
     initGame() {
         let boxes = [];
-        this.board = [...Array(this.size)].map((x) => Array(this.size));
+        // this.board = [...Array(this.size)].map((x) => Array(this.size));
         this.rowSum = [...Array(this.size)].map((x) => 0);
         this.colSum = [...Array(this.size)].map((x) => 0);
 
+        this.diagSum = 0;
+        this.revDiagSum = 0;
         this.totalSum = 0;
+
         this.timeRemaining = MAX_TIMER;
 
         this.changeTurn();
 
         for (let i = 0; i < this.size; i++) {
             for (let j = 0; j < this.size; j++) {
-                boxes.push({ key: i + '-' + j, row: i, col: j, type: '' });
+                boxes = [
+                    ...boxes,
+                    { key: i + '-' + j, row: i, col: j, type: '' }
+                ];
             }
         }
 
@@ -56,9 +67,11 @@ export default class Board extends LightningElement {
         this.timer = setInterval(() => {
             this.timeRemaining -= TIMER_INTERVAL;
             if (this.timeRemaining === 0) {
-                console.log('times up');
                 this.stopTimer();
                 this.showPopup = true;
+                this.message = 'Times up!';
+                this.changeTurn();
+                this.setWinningMsg();
             }
         }, this.timeInterval);
     }
@@ -69,17 +82,23 @@ export default class Board extends LightningElement {
     }
 
     handlePlay(event) {
+        console.log('in handlePlay');
         let data = event.detail;
         let index = this.boxes.findIndex(
             (box) => box.key === data.row + '-' + data.col
         );
-        this.board[data.row][data.col] = this.turn;
-        this.checkWin(data.row, data.col, this.turn);
-        this.boxes[index].type = this.turn;
-        this.changeTurn();
-        this.stopTimer();
-        this.startTimer();
-        console.log(this.board);
+        // this.board[data.row][data.col] = this.turn;
+
+        // won or tie
+        if (this.checkWin(data.row, data.col, this.turn)) {
+            this.stopTimer();
+        } else {
+            // continue playing
+            this.boxes[index].type = this.turn;
+            this.changeTurn();
+            this.stopTimer();
+            this.startTimer();
+        }
     }
 
     handleWrongMove(event) {
@@ -94,6 +113,7 @@ export default class Board extends LightningElement {
         let val = turn === 'X' ? 1 : -1;
         this.rowSum[row] += val;
         this.colSum[col] += val;
+
         if (row === col) {
             this.diagSum += val;
         }
@@ -108,11 +128,12 @@ export default class Board extends LightningElement {
             Math.abs(this.diagSum) === this.size ||
             Math.abs(this.revDiagSum) == this.size
         ) {
-            console.log(turn + ' won!');
+            this.setWinningMsg();
             return turn;
         }
         if (this.checkTie()) {
-            console.log('Its a tie!');
+            this.message = 'Its a tie!';
+            this.showPopup = true;
             return 'tie';
         }
     }
@@ -123,14 +144,36 @@ export default class Board extends LightningElement {
     }
 
     handleStart(event) {
+        if (this.template.querySelector('my-player-form').validateInputs()) {
+            this.started = 'Start';
+            this.showPlayerForm = false;
+            this.initGame();
+        } else {
+            this.message = 'Please enter both players';
+            this.showPopup = true;
+        }
+    }
+
+    handleRestart(event) {
         this.stopTimer();
-        this.started = 'Start';
         this.initGame();
     }
 
-    get buttonLabel() {
-        return this.started ? 'Restart' : 'Start';
+    handleClose(event) {
+        this.showPopup = false;
     }
 
-    handleClose(event) {}
+    handleFormChange(event) {
+        this.player1 = event.detail.player1;
+        this.player2 = event.detail.player2;
+    }
+
+    get playerName() {
+        return 'X' === this.turn ? this.player1 : this.player2;
+    }
+
+    setWinningMsg() {
+        this.message = this.playerName + ' won!';
+        this.showPopup = true;
+    }
 }

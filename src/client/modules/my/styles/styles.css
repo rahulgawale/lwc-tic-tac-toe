@@ -58,9 +58,11 @@
     text-transform: uppercase;
 }
 
-.button:hover {
+.button:hover,
+.button:focus {
     box-shadow: 0em 0 0.8em #94b5f3;
     background-color: #3f7cef;
+    outline: none;
 }
 
 .input {

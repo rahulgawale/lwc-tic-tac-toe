@@ -1,11 +1,31 @@
 <template>
     <div class="app padding-around_medium">
         <div class="heading">Tic Tac Toe</div>
-        <my-player-form></my-player-form>
-        <div class="timer padding-around_small">
+        <my-player-form
+            if:true={showPlayerForm}
+            onchange={handleFormChange}
+        ></my-player-form>
+
+        <div
+            if:false={started}
+            class="controls padding-around_x-small"
+        >
+            <button
+                class="button"
+                onclick={handleStart}
+            >
+                {buttonLabelStart}
+            </button>
+        </div>
+
+        <div
+            if:false={showPlayerForm}
+            class="timer padding-around_small"
+        >
             <my-progress-bar value={timeRemaining}>
             </my-progress-bar>
         </div>
+
         <div class="game">
             <div
                 class="box"
@@ -23,15 +43,17 @@
                 >
                 </my-box>
             </div>
-
-            <div class="controls padding-around_x-small">
-                <button
-                    class="button"
-                    onclick={handleStart}
-                >
-                    {buttonLabel}
-                </button>
-            </div>
+        </div>
+        <div
+            if:true={started}
+            class="controls padding-around_x-small"
+        >
+            <button
+                class="button"
+                onclick={handleRestart}
+            >
+                {buttonLabelRestart}
+            </button>
         </div>
         <my-popup
             style="position:relative;"
