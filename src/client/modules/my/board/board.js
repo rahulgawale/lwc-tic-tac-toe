@@ -34,7 +34,6 @@ export default class Board extends LightningElement {
 
     initGame() {
         let boxes = [];
-        // this.board = [...Array(this.size)].map((x) => Array(this.size));
         this.rowSum = [...Array(this.size)].map((x) => 0);
         this.colSum = [...Array(this.size)].map((x) => 0);
 
@@ -56,11 +55,8 @@ export default class Board extends LightningElement {
         }
 
         this.boxes = boxes;
+        console.log('boxes', this.boxes);
         this.startTimer();
-    }
-
-    get noBoxes() {
-        return !this.boxes.length;
     }
 
     startTimer() {
@@ -87,10 +83,10 @@ export default class Board extends LightningElement {
         let index = this.boxes.findIndex(
             (box) => box.key === data.row + '-' + data.col
         );
-        // this.board[data.row][data.col] = this.turn;
 
         // won or tie
         if (this.checkWin(data.row, data.col, this.turn)) {
+            this.boxes[index].type = this.turn;
             this.stopTimer();
         } else {
             // continue playing
