@@ -17,9 +17,9 @@
         "prettier": "^2.5.1"
     },
     "engines": {
-        "node": ">=10.13.0",
-        "npm": ">=6.4.1",
-        "yarn": ">=1.9.4"
+        "node": "14.17.6",
+        "npm": "6.14.15",
+        "yarn": "1.9.4"
     },
     "homepage": "https://github.com/Rahul Gawale/lwc-tic-tac-toe",
     "keywords": [
@@ -46,8 +46,8 @@
         "precommit": "npm run prettier:verify && [ $? -eq 0 ] && npm run lint",
         "prettier": "prettier --write \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
         "prettier:verify": "prettier --list-different \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
-        "start": "node src/server/api.js",
-        "start:api": "node src/server/api.js",
+        "start": "node src/server/api.js --openssl-legacy-provider",
+        "start:api": "node src/server/api.js --openssl-legacy-provider",
         "start:client": "node scripts/server.js",
         "test:unit": "lwc-services test:unit",
         "test:unit:coverage": "lwc-services test:unit --coverage",
