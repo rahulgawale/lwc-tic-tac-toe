@@ -7,8 +7,16 @@ const app = express();
 app.use(helmet());
 app.use(compression());
 
-const HOST = process.env.API_HOST || 'localhost';
-const PORT = process.env.API_PORT || 3002;
+const HOST = process.env.HOST || 'localhost';
+const PORT = process.env.PORT || 3002;
+
+const DIST_DIR = './dist';
+
+app.use(express.static(DIST_DIR));
+
+app.use(/^(?/api.+/, (req, res) => {
+    res.sendFile(path.resolve(DIST_DIR, 'index.html'));
+});
 
 app.get('/api/v1/endpoint', (req, res) => {
     res.json({ success: true });
