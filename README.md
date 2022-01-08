@@ -1,7 +1,7 @@
 # lwc-tic-tac-toe
 
 Building a classic Tic Tac Toe game to demonstrate the LWC OSS and fun
-[Play it live](https://damp-badlands-91839.herokuapp.com/)
+[Play it live](https://lwc-tic-tac-toe.herokuapp.com/)
 
 ## How to start?
 
