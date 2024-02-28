@@ -1,4 +1,5 @@
-# lwc-tic-tac-toe
+
+# lwc-tic-tac-toe (Archived as create-lwc-app is deprecated)
 
 Building a classic Tic Tac Toe game to demonstrate the LWC OSS and fun
 [Play it live](https://lwc-tic-tac-toe.herokuapp.com/)
